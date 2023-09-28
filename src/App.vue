@@ -7,10 +7,14 @@
         store,
       }
     },
+    created() {
+      store.fetchData();
+    },
     methods: {
       searchFilms() {
         this.store.base_url = this.store.base_url + `&query=${store.movies}`
         console.log(this.store.base_url);
+        console.log(store.fetchData());
        }
       
     },
