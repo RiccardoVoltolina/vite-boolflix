@@ -1,29 +1,37 @@
 <script>
-  import  {store}  from './store.js';
-  import axios from 'axios'
+  import AppSearch from './components/AppSearch.vue';
+/*   import  {store}  from './store.js';
+ */  import axios from 'axios'
   export default {
     data() {
       return {
-        store,
+        AppSearch,
       }
     },
-    created() {
+  /*   created() {
       store.fetchData();
-    },
+    }, */
     methods: {
-      searchFilms() {
+
+      //al click stampo i risultati filtrati
+
+     /*  searchFilms() {
+
+        //cambio il mio url dinamicamente
+
         this.store.base_url = this.store.base_url + `&query=${store.movies}`
         console.log(this.store.base_url);
         this.store.fetchData()
         
-       }
+       } */
       
     },
   }
 </script>
 
 <template>
-  <header>
+  <AppSearch/>
+<!--   <header>
     <input  v-model="store.movies" type="text" name="search" id="">
     <button @click="searchFilms()">CERCA IL TUO FILM</button>
     <div class="container">
@@ -38,7 +46,7 @@
       </ul>
     </div>
   </header>
-
+ -->
 
 
 </template>
