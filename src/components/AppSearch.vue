@@ -5,12 +5,41 @@ export default {
     data() {
         return {
             store,
+            flags: [{
+                img:"src/assets/img_bandiere/france_flags_flag_16999.png",
+                language:'fr',
+            },
+            {
+                img:"src/assets/img_bandiere/italy_flags_flag_17018.png",
+                language:'it',
+            },
+            {
+                img:"src/assets/img_bandiere/spain_flags_flag_17068.png",
+                language:'es',
+            },
+            {
+                img:"src/assets/img_bandiere/united_kingdom_flags_flag_17079.png",
+                language:'en',
+            },
+            {
+                img:'https://e7.pngegg.com/pngimages/713/101/png-clipart-question-mark-question-mark.png',
+                language: 'unknown'
+            }
+        ]
         }
     },
     created() {
         store.fetchData();
     },
     methods: {
+
+        
+
+         flagsCheck(i) {
+            
+            let languageFlag = this.flags.filter(item=> item.language === this.store.selectedFilm[i].original_language);
+            return languageFlag
+        }, 
 
         //al click stampo i risultati filtrati
 
@@ -21,8 +50,8 @@ export default {
             this.store.base_url = this.store.base_url + `&query=${store.movies}`
             console.log(this.store.base_url);
             this.store.fetchData()
-
         }
+
 
     },
 
@@ -46,4 +75,9 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    img {
+        width: 30px;
+    }
+
+</style>
