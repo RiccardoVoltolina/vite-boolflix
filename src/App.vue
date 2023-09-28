@@ -27,7 +27,13 @@
     <input  v-model="store.movies" type="text" @keyup="searchFilms()" name="search" id="">
     <div class="container">
       <ul v-for="(film, i) in this.store.selectedFilm">
-        <li>{{ this.store.selectedFilm[i].original_title}}</li>
+        <li class="d-flex flex-column">
+          <div>TITOLO: {{ this.store.selectedFilm[i].title }}</div>
+          <div>TITOLO DEL FILM: {{ this.store.selectedFilm[i].original_title}}</div>
+          <div>LINGUA: {{ this.store.selectedFilm[i].original_language }}</div>
+          <div>VOTO: {{ this.store.selectedFilm[i].vote_average }}</div>
+        </li>
+
       </ul>
     </div>
   </header>

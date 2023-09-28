@@ -9,9 +9,6 @@ export const store = reactive({
     .get(this.base_url)
     .then(response =>{
       this.selectedFilm = response.data.results
-
-
-
     })
 },
 
