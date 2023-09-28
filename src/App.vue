@@ -24,7 +24,8 @@
 
 <template>
   <header>
-    <input  v-model="store.movies" type="text" @keyup="searchFilms()" name="search" id="">
+    <input  v-model="store.movies" type="text" name="search" id="">
+    <button @click="searchFilms()">CERCA IL TUO FILM</button>
     <div class="container">
       <ul v-for="(film, i) in this.store.selectedFilm">
         <li class="d-flex flex-column">
