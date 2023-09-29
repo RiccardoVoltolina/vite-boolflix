@@ -81,9 +81,10 @@ export default {
         <ul>
             <li v-for="(film) in this.store.selectedFilm" class="d-flex flex-column">
 
+                
+                <img :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.backdrop_path} ` : 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/No_immagine_disponibile.svg/768px-No_immagine_disponibile.svg.png'" alt="">
+                
                 <!-- operatore ternario -->
-
-                <img :src="`https://image.tmdb.org/t/p/w342/${film.backdrop_path}`" alt="">
 
                 <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
 
