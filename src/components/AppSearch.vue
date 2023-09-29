@@ -38,10 +38,11 @@ export default {
         takeLanguageValue(i) {
 
             let languageValue = this.store.selectedFilm[i].original_language
+            console.log(languageValue);
             this.flags.forEach(flag => {
-                this.store.singleLanguage = flag
-                console.log(this.store.singleLanguage);
-                
+                let resultFlag = languageValue.filter((word)=> word.includes(languageValue))
+                console.log(resultFlag);
+                 
                 
                 
             });
