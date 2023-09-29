@@ -54,14 +54,16 @@ export default {
 
         },
 
+        searchTvSeries() {
+            
+        },
+
         //al click stampo i risultati filtrati
 
         searchFilms() {
 
             //cambio il mio url dinamicamente
-
-            this.store.base_url = this.store.base_url + `&query=${store.movies}`
-            console.log(this.store.movies);
+            this.store.base_url = `${this.store.base_urlN}api_key=e99307154c6dfb0b4750f6603256716d&query=${store.movies}`
             this.store.fetchData()
         }
 
@@ -78,8 +80,8 @@ export default {
     <div class="container">
         <ul>
             <li v-for="(film) in this.store.selectedFilm" class="d-flex flex-column">
-                <div>TITOLO: {{ film.title }}</div>
-                <div>TITOLO DEL FILM: {{ film.original_title }}</div>
+                <div>TITOLO: {{ film.title }} {{ film.name }}</div>
+                <div>TITOLO DEL FILM/SERIE: {{ film.original_title }} {{ film.original_name }}</div>
                 <div>
                     LINGUA:
                     <img :src="getFlagImage(film)" alt="">
