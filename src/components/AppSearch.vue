@@ -80,8 +80,14 @@ export default {
     <div class="container">
         <ul>
             <li v-for="(film) in this.store.selectedFilm" class="d-flex flex-column">
-                <div>TITOLO: {{ film.title }} {{ film.name }}</div>
-                <div>TITOLO DEL FILM/SERIE: {{ film.original_title }} {{ film.original_name }}</div>
+
+                <!-- operatore ternario -->
+
+                <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
+
+                <!-- operatore nullish solo per valori nulli/ undefinited -->
+
+                <div>TITOLO DEL FILM/SERIE: {{ film.original_title ?? film.original_name }} </div>
                 <div>
                     LINGUA:
                     <img :src="getFlagImage(film)" alt="">
