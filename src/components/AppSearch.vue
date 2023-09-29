@@ -83,6 +83,8 @@ export default {
 
                 <!-- operatore ternario -->
 
+                <img :src="`https://image.tmdb.org/t/p/w342/${film.backdrop_path}`" alt="">
+
                 <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
 
                 <!-- operatore nullish solo per valori nulli/ undefinited -->
@@ -90,7 +92,7 @@ export default {
                 <div>TITOLO DEL FILM/SERIE: {{ film.original_title ?? film.original_name }} </div>
                 <div>
                     LINGUA:
-                    <img :src="getFlagImage(film)" alt="">
+                    <img class="language_flag" :src="getFlagImage(film)" alt="">
 
                 </div>
                  <div>VOTO: {{ film.vote_average }}</div>
@@ -101,7 +103,12 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
 img {
+    width: 500px;
+}
+.language_flag {
     width: 30px;
 }
+
 </style>
