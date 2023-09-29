@@ -38,10 +38,12 @@ export default {
         takeLanguageValue(i) {
 
             let languageValue = this.store.selectedFilm[i].original_language
-            console.log(languageValue);
+            let trovato = false
             this.flags.forEach(flag => {
-                let resultFlag = languageValue.filter((word)=> word.includes(languageValue))
-                console.log(resultFlag);
+                if (flag.language === languageValue) {
+                    trovato = true
+                    console.log(trovato);
+                } 
                  
                 
                 
