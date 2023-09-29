@@ -35,10 +35,10 @@ export default {
 
         
 
-         flagsCheck(i) {
+         takeLanguageValue(i) {
             
-            let languageFlag = this.flags.filter(item=> item.language === this.store.selectedFilm[i].original_language);
-            return languageFlag
+            let languageValue = this.store.selectedFilm[i].original_language
+            return languageValue
         }, 
 
         //al click stampo i risultati filtrati
@@ -48,7 +48,7 @@ export default {
             //cambio il mio url dinamicamente
 
             this.store.base_url = this.store.base_url + `&query=${store.movies}`
-            console.log(this.store.base_url);
+            console.log(this.store.movies);
             this.store.fetchData()
         }
 
@@ -67,7 +67,7 @@ export default {
             <li class="d-flex flex-column">
                 <div>TITOLO: {{ this.store.selectedFilm[i].title }}</div>
                 <div>TITOLO DEL FILM: {{ this.store.selectedFilm[i].original_title }}</div>
-                <div>LINGUA: {{ this.store.selectedFilm[i].original_language }}</div>
+                <div>LINGUA: {{ this.takeLanguageValue(i) }}</div>
                 <div>VOTO: {{ this.store.selectedFilm[i].vote_average }}</div>
             </li>
 
