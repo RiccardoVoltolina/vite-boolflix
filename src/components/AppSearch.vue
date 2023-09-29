@@ -21,10 +21,6 @@ export default {
                 img: "src/assets/img_bandiere/united_kingdom_flags_flag_17079.png",
                 language: 'en',
             },
-            {
-                img: 'https://e7.pngegg.com/pngimages/713/101/png-clipart-question-mark-question-mark.png',
-                language: 'unknown'
-            }
             ]
         }
     },
@@ -34,23 +30,28 @@ export default {
     methods: {
 
 
+        /**
+         * questa funzione prende l' immagine della bandiera
+         * @param  singleFilm 
+         * @return url flag image
+         */
+        getFlagImage(singleFilm) {
 
-        takeLanguageValue(i) {
+            let languageValue = singleFilm.original_language
+            console.log(languageValue);
 
-            let languageValue = this.store.selectedFilm[i].original_language
-            let trovato = false
+            let findLanguage = 'https://banner2.cleanpng.com/20180408/rxe/kisspng-emoji-globe-world-globe-5aca7ccb80dca7.1142281915232196595278.jpg'
+
             this.flags.forEach(flag => {
                 if (flag.language === languageValue) {
-                    trovato = true
-                    console.log(trovato);
-                } 
-                 
-                
-                
+                    //se è stato trovato riassegno a film.original_language il valore dell' img desiderata
+                    findLanguage = flag.img
+                }
             });
-           
 
-            return languageValue
+            return findLanguage
+
+
         },
 
         //al click stampo i risultati filtrati
@@ -76,12 +77,15 @@ export default {
     <button @click="searchFilms()">CERCA IL TUO FILM</button>
     <div class="container">
         <ul>
-            <li v-for="(film, i) in this.store.selectedFilm" class="d-flex flex-column">
-                <div>TITOLO: {{ this.store.selectedFilm[i].title }}</div>
-                <div>TITOLO DEL FILM: {{ this.store.selectedFilm[i].original_title }}</div>
-                <div>LINGUA: {{ this.store.selectedFilm[i].original_language }}</div>
-                <div>{{ takeLanguageValue(i) }}</div>
-                <div>VOTO: {{ this.store.selectedFilm[i].vote_average }}</div>
+            <li v-for="(film) in this.store.selectedFilm" class="d-flex flex-column">
+                <div>TITOLO: {{ film.title }}</div>
+                <div>TITOLO DEL FILM: {{ film.original_title }}</div>
+                <div>
+                    LINGUA:
+                    <img :src="getFlagImage(film)" alt="">
+
+                </div>
+                 <div>VOTO: {{ film.vote_average }}</div>
             </li>
 
         </ul>
