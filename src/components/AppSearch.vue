@@ -54,8 +54,11 @@ export default {
 
         },
 
-        searchTvSeries() {
-            
+        starValueConverter(voteAverage) {
+            // con math.ceil ottengo un numero intero, arrotondando sempre verso l' alto
+            let starValue = Math.ceil((voteAverage / 10 ) * 5)
+            console.log(starValue);
+            return starValue
         },
 
         //al click stampo i risultati filtrati
@@ -96,7 +99,9 @@ export default {
                     <img class="language_flag" :src="getFlagImage(film)" alt="">
 
                 </div>
-                 <div>VOTO: {{ film.vote_average }}</div>
+                 <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
+                    
+                </div>
             </li>
 
         </ul>
