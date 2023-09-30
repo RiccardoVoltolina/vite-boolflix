@@ -101,7 +101,7 @@ export default {
 
                 </div>
                  <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
-                    <img class="star_svg" src="../assets/img_bandiere/star-rate-svgrepo-com.svg" alt="">
+                    <img v-for="(star) in starValueConverter(film.vote_average)" class="star_svg" src="../assets/img_bandiere/star-rate-svgrepo-com.svg" alt="">
                 </div>
             </li>
 
