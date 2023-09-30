@@ -57,7 +57,8 @@ export default {
         starValueConverter(voteAverage) {
             // con math.ceil ottengo un numero intero, arrotondando sempre verso l' alto
             let starValue = Math.ceil((voteAverage / 10 ) * 5)
-            console.log(starValue);
+            this.store.starValueArray.push(starValue)
+            console.log(this.store.starValueArray);
             return starValue
         },
 
@@ -100,7 +101,7 @@ export default {
 
                 </div>
                  <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
-                    
+                    <img class="star_svg" src="../assets/img_bandiere/star-rate-svgrepo-com.svg" alt="">
                 </div>
             </li>
 
@@ -115,6 +116,10 @@ img {
 }
 .language_flag {
     width: 30px;
+}
+
+.star_svg {
+    width: 20px;
 }
 
 </style>
