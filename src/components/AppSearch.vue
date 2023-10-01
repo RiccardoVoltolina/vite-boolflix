@@ -159,35 +159,37 @@ export default {
             </div>
         </div>
         <div class="container film_section bg-black">
-            <div class="row riga-film mt-4">
-                <div v-for="(film) in this.store.selectedFilm" class="col-lg-2 col-md-3 col-sm-4  container_img">
-                    <div class="bg-white p-4">
-                        <div>
+            <div class="row mt-4">
+                <div v-for="(film) in this.store.selectedFilm" class="col-lg-2 col-md-3 col-sm-4 py-2">
+                        <div class="card">
+                            <div class="bg-white">
+
+                                <img class="filmImage" :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.poster_path} ` : 'https://picsum.photos/164/246'"
+                                    alt="">
+                            </div>
                             
-                        </div>
-                        <img class="filmImage" :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.backdrop_path} ` : 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/No_immagine_disponibile.svg/768px-No_immagine_disponibile.svg.png'"
-                            alt="">
-                        <div>
-                            <!-- operatore ternario -->
-
-                            <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
-
-                            <!-- operatore nullish solo per valori nulli/ undefinited -->
-
-                            <div>TITOLO DEL FILM/SERIE: {{ film.original_title ?? film.original_name }} </div>
-                            <div>
-                                LINGUA:
-                                <img class="language_flag" :src="getFlagImage(film)" alt="">
-
+                            <div class="d-none">
+                                <!-- operatore ternario -->
+    
+                                <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
+    
+                                <!-- operatore nullish solo per valori nulli/ undefinited -->
+    
+                                <div>TITOLO DEL FILM/SERIE: {{ film.original_title ?? film.original_name }} </div>
+                                <div>
+                                    LINGUA:
+                                    <img class="language_flag" :src="getFlagImage(film)" alt="">
+    
+                                </div>
+                                <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
+                                    <img v-for="(star) in starValueConverter(film.vote_average)" id="star_svg"
+                                        src="../assets/img_bandiere/star-rate-svgrepo-com.svg" alt="">
+                                </div>
+    
                             </div>
-                            <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
-                                <img v-for="(star) in starValueConverter(film.vote_average)" id="star_svg"
-                                    src="../assets/img_bandiere/star-rate-svgrepo-com.svg" alt="">
-                            </div>
-
                         </div>
 
-                    </div>
+                    
 
                 </div>
             </div>
@@ -272,7 +274,6 @@ main {
 .filmImage {
     width: 100%;
     height: 100%;
-    padding: 1rem;
 }
 
 .film_section img:hover {
