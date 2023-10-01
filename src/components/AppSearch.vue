@@ -56,7 +56,7 @@ export default {
 
         starValueConverter(voteAverage) {
             // con math.ceil ottengo un numero intero, arrotondando sempre verso l' alto
-            let starValue = Math.ceil((voteAverage / 10 ) * 5)
+            let starValue = Math.ceil((voteAverage / 10) * 5)
             this.store.starValueArray.push(starValue)
             console.log(this.store.starValueArray);
             return starValue
@@ -85,9 +85,10 @@ export default {
         <ul>
             <li v-for="(film) in this.store.selectedFilm" class="d-flex flex-column">
 
-                
-                <img :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.backdrop_path} ` : 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/No_immagine_disponibile.svg/768px-No_immagine_disponibile.svg.png'" alt="">
-                
+
+                <img :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.backdrop_path} ` : 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/No_immagine_disponibile.svg/768px-No_immagine_disponibile.svg.png'"
+                    alt="">
+
                 <!-- operatore ternario -->
 
                 <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
@@ -100,20 +101,64 @@ export default {
                     <img class="language_flag" :src="getFlagImage(film)" alt="">
 
                 </div>
-                 <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
-                    <img v-for="(star) in starValueConverter(film.vote_average)" class="star_svg" src="../assets/img_bandiere/star-rate-svgrepo-com.svg" alt="">
+                <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
+                    <img v-for="(star) in starValueConverter(film.vote_average)" class="star_svg"
+                        src="../assets/img_bandiere/star-rate-svgrepo-com.svg" alt="">
                 </div>
             </li>
 
         </ul>
     </div>
+
+    <header>
+        <nav>
+            <div class="container">
+                <div class="row">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="left_side_header d-flex align-items-center">
+                            <img src="../assets/img_bandiere/pngimg.com - netflix_PNG22.png" alt="">
+                            <div class="w_470px d-sm-none d-md-block">
+                                <input v-model="store.movies" type="text" name="search" id="">
+                                <button @click="searchFilms()">CERCA</button>
+                            </div>
+                            <a class="d-sm-none d-md-none d-lg-block" href="#">Home</a>
+                            <a class="d-sm-none d-md-none d-lg-block" href="#">Serie TV</a>
+                            <a class="d-sm-none d-md-none d-lg-block" href="#">Nuovi Popolari</a>
+                            <a class="d-sm-none d-md-none d-lg-block" href="#">La mia lista</a>
+                        </div>
+                        <div class="right_side_header d-flex align-items-center">
+                            <a class="d-sm-none d-md-none d-lg-block" href="#"><i
+                                    class="fa-solid fa-magnifying-glass"></i></a>
+                            <a class="d-sm-none d-md-none d-lg-block" href="#">Bambini</a>
+                            <a class="d-sm-none d-md-none d-lg-block" href="#">DVD</a>
+                            <a class="d-sm-none d-md-none d-lg-block" href="#"><i class="fa-solid fa-bell"></i></a>
+                            <img src="./img/Netflix-avatar.png" alt="">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle border-0 text-white" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+
+                                </button>
+                                <ul class="dropdown-menu" style="">
+                                    <li class="d-flex align-items-center bg-danger-subtle ps-3"><img
+                                            src="./img/Netflix-avatar.png" alt=""> <a class="dropdown-item text-black"
+                                            href="#">Riky</a></li>
+                                    <li class="d-flex align-items-center ps-3"><img src="./img/Netflix-avatar.png" alt="">
+                                        <a class="dropdown-item text-black" href="#">Nimesh</a></li>
+                                    <li class="d-flex align-items-center bg-dark-subtle ps-3"><img
+                                            src="./img/Netflix-avatar.png" alt=""> <a class="dropdown-item text-black"
+                                            href="#">Fabio</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 </template>
 
 <style lang="scss" scoped>
 
-img {
-    width: 500px;
-}
 .language_flag {
     width: 30px;
 }
@@ -122,4 +167,74 @@ img {
     width: 20px;
 }
 
-</style>
+body a:hover {
+    color: red;
+}
+
+header {
+    height: 80px;
+    background-color: black;
+}
+
+.left_side_header img {
+    height: 80px;
+}
+
+.left_side_header a {
+    text-decoration: none;
+    color: white;
+    margin-left: 0.5rem;
+}
+
+.right_side_header img {
+    height: 30px;
+}
+
+nav .w_470px {
+    width: 470px;
+}
+
+.right_side_header a {
+    margin-right: 0.5rem;
+    text-decoration: none;
+    color: white;
+}
+
+/* start main */
+
+main {
+    background-color: black;
+}
+
+/* insieme per il nostro pianeta */
+
+.gray {
+    color: gray;
+}
+
+.border_1 {
+    border: 1px solid white;
+    border-radius: 0;
+}
+
+#border_1 {
+    border: 1px solid gray;
+    border-radius: 0;
+}
+
+/* film section */
+
+
+.container_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.film_section img:hover {
+    filter: contrast(0.5);
+    cursor: pointer;
+}
+
+.riga-film {
+    height: 150px;
+}</style>
