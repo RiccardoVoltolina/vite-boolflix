@@ -161,14 +161,12 @@ export default {
         <div class="container film_section bg-black">
             <div class="row mt-4">
                 <div v-for="(film) in this.store.selectedFilm" class="col-lg-2 col-md-3 col-sm-4 py-2">
-                        <div class="card">
-                            <div class="bg-white">
+                        <div class="card position-relative">
 
                                 <img class="filmImage" :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.poster_path} ` : 'https://picsum.photos/164/246'"
                                     alt="">
-                            </div>
                             
-                            <div class="d-none">
+                            <div class="d-none position-absolute info_film">
                                 <!-- operatore ternario -->
     
                                 <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
@@ -275,6 +273,7 @@ main {
     width: 100%;
     height: 100%;
 }
+
 
 .film_section img:hover {
     filter: contrast(0.5);
