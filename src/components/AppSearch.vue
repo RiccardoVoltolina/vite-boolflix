@@ -79,37 +79,6 @@ export default {
 }
 </script>
 <template>
-    <input v-model="store.movies" type="text" name="search" id="">
-    <button @click="searchFilms()">CERCA IL TUO FILM</button>
-    <div class="container">
-        <ul>
-            <li v-for="(film) in this.store.selectedFilm" class="d-flex flex-column">
-
-
-                <img :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.backdrop_path} ` : 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/No_immagine_disponibile.svg/768px-No_immagine_disponibile.svg.png'"
-                    alt="">
-
-                <!-- operatore ternario -->
-
-                <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
-
-                <!-- operatore nullish solo per valori nulli/ undefinited -->
-
-                <div>TITOLO DEL FILM/SERIE: {{ film.original_title ?? film.original_name }} </div>
-                <div>
-                    LINGUA:
-                    <img class="language_flag" :src="getFlagImage(film)" alt="">
-
-                </div>
-                <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
-                    <img v-for="(star) in starValueConverter(film.vote_average)" class="star_svg"
-                        src="../assets/img_bandiere/star-rate-svgrepo-com.svg" alt="">
-                </div>
-            </li>
-
-        </ul>
-    </div>
-
     <header>
         <nav>
             <div class="container">
@@ -143,7 +112,8 @@ export default {
                                             src="./img/Netflix-avatar.png" alt=""> <a class="dropdown-item text-black"
                                             href="#">Riky</a></li>
                                     <li class="d-flex align-items-center ps-3"><img src="./img/Netflix-avatar.png" alt="">
-                                        <a class="dropdown-item text-black" href="#">Nimesh</a></li>
+                                        <a class="dropdown-item text-black" href="#">Nimesh</a>
+                                    </li>
                                     <li class="d-flex align-items-center bg-dark-subtle ps-3"><img
                                             src="./img/Netflix-avatar.png" alt=""> <a class="dropdown-item text-black"
                                             href="#">Fabio</a></li>
@@ -155,12 +125,86 @@ export default {
             </div>
         </nav>
     </header>
+
+    <main>
+        <div class="container">
+            <div class="d-flex justify-content-between pt-4">
+                <div>
+                    <h2 class="text-white">Insieme per il nostro pianeta</h2>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown d-sm-none d-md-none d-lg-block">
+                        <button id="border_1" class="btn  dropdown-toggle gray" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        </button>
+                        <ul class="dropdown-menu" style="">
+                            <li><a class="dropdown-item" href="#">Azione</a></li>
+                            <li><a class="dropdown-item" href="#">Avventura</a></li>
+                            <li><a class="dropdown-item" href="#">Horror</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown border_1">
+                        <button class="btn d-flex align-items-center text-white dropdown-toggle border-0" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-bars pe-3 text-white"></i>
+                            <div class="pe-3 text-white">Suggerimenti per te</div>
+                        </button>
+                        <ul class="dropdown-menu" style="">
+                            <li><a class="dropdown-item" href="#">Film</a></li>
+                            <li><a class="dropdown-item" href="#">Serie tv</a></li>
+                            <li><a class="dropdown-item" href="#">Anime</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container film_section bg-black">
+            <div class="row riga-film mt-4">
+                <div v-for="(film) in this.store.selectedFilm" class="col-lg-2 col-md-3 col-sm-4  container_img">
+                    <div class="bg-white p-4">
+                        <div>
+                            
+                        </div>
+                        <img class="filmImage" :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.backdrop_path} ` : 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/No_immagine_disponibile.svg/768px-No_immagine_disponibile.svg.png'"
+                            alt="">
+                        <div>
+                            <!-- operatore ternario -->
+
+                            <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
+
+                            <!-- operatore nullish solo per valori nulli/ undefinited -->
+
+                            <div>TITOLO DEL FILM/SERIE: {{ film.original_title ?? film.original_name }} </div>
+                            <div>
+                                LINGUA:
+                                <img class="language_flag" :src="getFlagImage(film)" alt="">
+
+                            </div>
+                            <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
+                                <img v-for="(star) in starValueConverter(film.vote_average)" id="star_svg"
+                                    src="../assets/img_bandiere/star-rate-svgrepo-com.svg" alt="">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
 </template>
 
 <style lang="scss" scoped>
 
+
+main {
+    height: 100%;
+}
+
 .language_flag {
-    width: 30px;
+    width: 10px;
 }
 
 .star_svg {
@@ -225,9 +269,10 @@ main {
 /* film section */
 
 
-.container_img img {
+.filmImage {
     width: 100%;
     height: 100%;
+    padding: 1rem;
 }
 
 .film_section img:hover {
@@ -235,6 +280,7 @@ main {
     cursor: pointer;
 }
 
-.riga-film {
-    height: 150px;
-}</style>
+#star_svg {
+    width: 10px;
+}
+</style>

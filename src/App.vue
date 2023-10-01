@@ -18,5 +18,6 @@
 </template>
 
 <style lang="scss">
+
   @use './assets/app'
 </style>
