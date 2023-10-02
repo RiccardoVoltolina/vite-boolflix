@@ -56,8 +56,6 @@ export default {
         starValueConverter(voteAverage) {
             // con math.ceil ottengo un numero intero, arrotondando sempre verso l' alto
             let starValue = Math.ceil((voteAverage / 10) * 5)
-           
-           
             return starValue 
         },
 
@@ -87,8 +85,16 @@ export default {
 
                 </div>
                 <div>VOTO:{{ starValueConverter(film.vote_average) }}
-                    <div v-if="starValueConverter(film.vote_average)"></div>
-                    <img v-for="star in starValueConverter(film.vote_average)" id="star_svg" src="../assets/img/starValue.svg" alt="">
+                    <div v-if="starValueConverter(film.vote_average) > 0">
+                        <img v-for="star in starValueConverter(film.vote_average)" id="star_svg" src="../assets/img/starValue.svg" alt="">
+                    </div>
+                    <div class="d-flex" v-else>
+                        <img class="star_plane" src="https://www.svgrepo.com/show/172818/star-outline.svg" alt="">
+                        <img class="star_plane" src="https://www.svgrepo.com/show/172818/star-outline.svg" alt="">
+                        <img class="star_plane" src="https://www.svgrepo.com/show/172818/star-outline.svg" alt="">
+                        <img class="star_plane" src="https://www.svgrepo.com/show/172818/star-outline.svg" alt="">
+                        <img class="star_plane" src="https://www.svgrepo.com/show/172818/star-outline.svg" alt="">
+                    </div>
                 </div>
 
             </div>
@@ -110,6 +116,10 @@ export default {
 }
 .info_film {
     display: none;
+}
+
+.star_plane {
+    width: 10px;
 }
 
 </style>
