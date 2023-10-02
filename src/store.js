@@ -9,7 +9,6 @@ export const store = reactive({
   selectedFilm: '',
   movies: null,
   filmLanguage:null,
-  starValueArray:[],
   singleLanguage: [],
 
   //creo la mia funzione axios 

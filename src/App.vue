@@ -2,7 +2,7 @@
 import { store } from './store.js';
 
 import AppHeader from './components/AppHeader.vue';
-import AppCard from './components/AppCard.vue'
+import AppCard from './components/AppCard.vue';
 export default {
   name: 'App',
   data() {
@@ -105,11 +105,6 @@ main {
 }
 
 
-.film_section img:hover {
-  filter: contrast(0.5);
-  cursor: pointer;
-  display: block;
-}
 
 #star_svg {
   width: 10px;

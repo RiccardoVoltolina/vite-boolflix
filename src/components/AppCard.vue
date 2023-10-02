@@ -57,6 +57,7 @@ export default {
             // con math.ceil ottengo un numero intero, arrotondando sempre verso l' alto
             let starValue = Math.ceil((voteAverage / 10) * 5)
            
+           
             return starValue 
         },
 
@@ -66,7 +67,7 @@ export default {
 </script>
 <template>
     <div class="col-lg-2 col-md-3 col-sm-4 py-2">
-        <div class="card position-relative">
+        <div class="card card_film position-relative">
 
             <img class="filmImage"
                 :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.poster_path} ` : 'https://picsum.photos/164/246'"
@@ -86,6 +87,7 @@ export default {
 
                 </div>
                 <div>VOTO:{{ starValueConverter(film.vote_average) }}
+                    <div v-if="starValueConverter(film.vote_average)"></div>
                     <img v-for="star in starValueConverter(film.vote_average)" id="star_svg" src="../assets/img/starValue.svg" alt="">
                 </div>
 
@@ -97,4 +99,17 @@ export default {
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.card_film:hover .filmImage {
+    filter: contrast(0.5);
+}
+.card_film:hover .info_film {
+    cursor: pointer;
+    display: block;
+}
+.info_film {
+    display: none;
+}
+
+</style>
