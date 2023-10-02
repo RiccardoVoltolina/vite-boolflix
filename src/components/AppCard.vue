@@ -1,6 +1,5 @@
 
 <script>
-import { store } from '../store.js';
 export default {
     name: 'AppCard',
     props: {
@@ -8,7 +7,7 @@ export default {
     },
     data() {
         return {
-            store,
+            
             flags: [{
                 img: "src/assets/img_bandiere/france_flags_flag_16999.png",
                 language: 'fr',
@@ -57,9 +56,8 @@ export default {
         starValueConverter(voteAverage) {
             // con math.ceil ottengo un numero intero, arrotondando sempre verso l' alto
             let starValue = Math.ceil((voteAverage / 10) * 5)
-            this.store.starValueArray.push(starValue)
-            console.log(this.store.starValueArray);
-            return starValue
+           
+            return starValue 
         },
 
     }
@@ -74,7 +72,7 @@ export default {
                 :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.poster_path} ` : 'https://picsum.photos/164/246'"
                 alt="">
 
-            <div class="d-none position-absolute info_film">
+            <div class=" position-absolute info_film text-white">
                 <!-- operatore ternario -->
 
                 <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
@@ -87,8 +85,8 @@ export default {
                     <img class="language_flag" :src="getFlagImage(film)" alt="">
 
                 </div>
-                <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
-                    <img id="star_svg" src="../assets/img/starValue.svg" alt="">
+                <div>VOTO:{{ starValueConverter(film.vote_average) }}
+                    <img v-for="star in starValueConverter(film.vote_average)" id="star_svg" src="../assets/img/starValue.svg" alt="">
                 </div>
 
             </div>

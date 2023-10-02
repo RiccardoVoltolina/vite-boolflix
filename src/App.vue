@@ -105,7 +105,7 @@ main {
 }
 
 
-.film_section img:hover+.info_film {
+.film_section img:hover {
   filter: contrast(0.5);
   cursor: pointer;
   display: block;
