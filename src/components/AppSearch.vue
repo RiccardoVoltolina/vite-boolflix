@@ -180,8 +180,8 @@ export default {
     
                                 </div>
                                 <div>VOTO: {{ film.vote_average }} {{ starValueConverter(film.vote_average) }}
-                                    <img v-for="(star) in starValueConverter(film.vote_average)" id="star_svg"
-                                        src="../assets/img_bandiere/star-rate-svgrepo-com.svg" alt="">
+                                    <img id="star_svg"
+                                    src="../assets/starValue.svg" alt="">
                                 </div>
     
                             </div>
@@ -275,9 +275,10 @@ main {
 }
 
 
-.film_section img:hover {
+.film_section img:hover + .info_film {
     filter: contrast(0.5);
     cursor: pointer;
+    display: block;
 }
 
 #star_svg {
