@@ -7,7 +7,7 @@ export default {
     },
     data() {
         return {
-            
+
             flags: [{
                 img: "src/assets/img_bandiere/france_flags_flag_16999.png",
                 language: 'fr',
@@ -27,7 +27,7 @@ export default {
             ]
         }
     },
-    
+
     methods: {
         /**
 * questa funzione prende l' immagine della bandiera
@@ -56,7 +56,7 @@ export default {
         starValueConverter(voteAverage) {
             // con math.ceil ottengo un numero intero, arrotondando sempre verso l' alto
             let starValue = Math.ceil((voteAverage / 10) * 5)
-            return starValue 
+            return starValue
         },
 
     }
@@ -71,22 +71,26 @@ export default {
                 :src="film.backdrop_path ? `https://image.tmdb.org/t/p/w342/${film.poster_path} ` : 'https://picsum.photos/164/246'"
                 alt="">
 
-            <div class=" position-absolute info_film text-white">
+            <div class=" position-absolute info_film text-white top-0 bottom-0 start-0 end-0  flex-column justify-content-between">
+                <div>
+                    <div class=" text-center">{{ film.title ? film.title : film.name }} </div>
+
+                    <!-- operatore nullish solo per valori nulli/ undefinited -->
+
+                    <div class=" py-2">Titolo originale: {{ film.original_title ?? film.original_name }} </div>
+                    <div class="d-flex align-items-center">Lingua:
+
+                        <img class="language_flag" :src="getFlagImage(film)" alt="">
+
+                    </div>
+                </div>
                 <!-- operatore ternario -->
 
-                <div>TITOLO: {{ film.title ? film.title : film.name }} </div>
 
-                <!-- operatore nullish solo per valori nulli/ undefinited -->
-
-                <div>TITOLO DEL FILM/SERIE: {{ film.original_title ?? film.original_name }} </div>
-                <div>
-                    LINGUA:
-                    <img class="language_flag" :src="getFlagImage(film)" alt="">
-
-                </div>
-                <div>VOTO:{{ starValueConverter(film.vote_average) }}
+                <div class="d-flex align-items-center">
                     <div v-if="starValueConverter(film.vote_average) > 0">
-                        <img v-for="star in starValueConverter(film.vote_average)" id="star_svg" src="../assets/img/starValue.svg" alt="">
+                        <img v-for="star in starValueConverter(film.vote_average)" id="star_svg"
+                            src="../assets/img/starValue.svg" alt="">
                     </div>
                     <div class="d-flex" v-else>
                         <img class="star_plane" src="https://www.svgrepo.com/show/172818/star-outline.svg" alt="">
@@ -106,20 +110,21 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-
 .card_film:hover .filmImage {
     filter: contrast(0.5);
 }
+
 .card_film:hover .info_film {
     cursor: pointer;
-    display: block;
+    display: flex;
 }
+
 .info_film {
     display: none;
+
 }
 
 .star_plane {
     width: 10px;
 }
-
 </style>
